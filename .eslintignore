@@ -1,3 +1,4 @@
 .tmp/*
 /node_modules/*
 commitlint.config.js
+jest.*
