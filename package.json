@@ -14,7 +14,9 @@
     "test:ci:i": "npm run test:i -- --coverage",
     "test:staged": "npm test -- --findRelatedTests",
     "compile": "esbuild src --outfile=.tmp/dist/index.js --bundle --minify --platform=node --tree-shaking=true",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "compose": "docker-compose down --remove-orphans && docker-compose up --build --force-recreate",
+    "compose:d": "npm run compose -- -d"
   },
   "keywords": [],
   "author": "",
