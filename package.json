@@ -16,7 +16,8 @@
     "compile": "esbuild src --outfile=.tmp/dist/index.js --bundle --minify --platform=node --tree-shaking=true",
     "lint": "eslint . --fix",
     "compose": "docker-compose down --remove-orphans && docker-compose up --build --force-recreate",
-    "compose:d": "npm run compose -- -d"
+    "compose:d": "npm run compose -- -d",
+    "dev": "nodemon --watch src --ext ts --exec \"ts-node src\""
   },
   "keywords": [],
   "author": "",
@@ -37,6 +38,7 @@
     "jest-environment-node": "29.7.0",
     "lefthook": "1.5.2",
     "lint-staged": "15.1.0",
+    "nodemon": "3.0.1",
     "rimraf": "5.0.5",
     "supertest": "6.3.3",
     "ts-jest": "29.1.1",
