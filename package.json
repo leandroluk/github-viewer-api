@@ -1,0 +1,27 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Github Viewer - API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "18.4.2",
+    "@commitlint/config-conventional": "18.4.2",
+    "commitlint": "18.4.2",
+    "cz-conventional-changelog": "3.3.0",
+    "lefthook": "1.5.2"
+  },
+  "commitlint": {
+    "extends": [
+      "./node_modules/@commitlint/config-conventional"
+    ]
+  },
+  "engines": {
+    "node": ">=10.6.0"
+  }
+}
