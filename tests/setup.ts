@@ -1,4 +1,4 @@
-// this is an example
+// this is an example of setup
 global.console = {
   log: jest.fn(),
   error: jest.fn(),

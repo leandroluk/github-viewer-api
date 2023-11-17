@@ -6,7 +6,7 @@
       "request": "launch",
       "runtimeArgs": [
         "run-script",
-        "dev"
+        "start:dev"
       ],
       "outputCapture": "std",
       "runtimeExecutable": "npm",
