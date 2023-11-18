@@ -21,6 +21,13 @@ const providers: Provider[] = [
     },
   },
   {
+    provide: 'TypeORMPing',
+    useFactory: (dataSource: DataSource) => {
+      return async () => await dataSource.query('SELECT 1');
+    },
+    inject: ['TypeORMDataSource'],
+  },
+  {
     provide: 'IAddRepo<IUser>',
     useFactory: (dataSource) => new TypeORMAddRepo(UserEntity, dataSource),
     inject: ['TypeORMDataSource'],

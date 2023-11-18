@@ -1,11 +1,16 @@
-import { Controller, Get } from '@nestjs/common';
+import { ICheckServerIntegrationTask } from '#/presentation/tasks';
+import { Controller, Get, Inject } from '@nestjs/common';
 import { ApiOkResponse } from '@nestjs/swagger';
 
 @Controller('/health')
 export class HealthController {
-  @ApiOkResponse({ description: 'Server is Running' })
+  constructor(
+    @Inject('ICheckServerIntegrationTask')
+    private readonly checkServerIntegrationTask: ICheckServerIntegrationTask,
+  ) {}
+  @ApiOkResponse({ description: 'Ok' })
   @Get()
-  get(): string {
-    return 'health';
+  async get(): Promise<void> {
+    await this.checkServerIntegrationTask.check();
   }
 }

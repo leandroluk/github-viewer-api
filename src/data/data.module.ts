@@ -3,6 +3,7 @@ import { Module, Provider } from '@nestjs/common';
 import {
   AddUserTask,
   AuthorizeUserTask,
+  CheckServerIntegrationTask,
   DecodeTokenTask,
   GetGithubUserTask,
   GetUserByEmailTask,
@@ -15,6 +16,7 @@ import {
 export const providers: Provider[] = [
   { provide: 'IAddUserTask', useClass: AddUserTask },
   { provide: 'IAuthorizeUserTask', useClass: AuthorizeUserTask },
+  { provide: 'ICheckServerIntegrationTask', useClass: CheckServerIntegrationTask },
   { provide: 'IDecodeTokenTask', useClass: DecodeTokenTask },
   { provide: 'IGetGithubUserTask', useClass: GetGithubUserTask },
   { provide: 'IGetUserByEmailTask', useClass: GetUserByEmailTask },
