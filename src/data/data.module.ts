@@ -1,6 +1,13 @@
 import { AdaptersModule, AxiosModule, TypeORMModule } from '#/infra';
 import { Module, Provider } from '@nestjs/common';
-import { AddUserTask, AuthorizeUserTask, DecodeTokenTask, GetUserByEmailTask, RefreshTokenTask } from './tasks';
+import {
+  AddUserTask,
+  AuthorizeUserTask,
+  DecodeTokenTask,
+  GetUserByEmailTask,
+  GetUserGithubByUserTask,
+  RefreshTokenTask,
+} from './tasks';
 
 export const providers: Provider[] = [
   { provide: 'IAddUserTask', useClass: AddUserTask },
@@ -8,6 +15,7 @@ export const providers: Provider[] = [
   { provide: 'IDecodeTokenTask', useClass: DecodeTokenTask },
   { provide: 'IGetUserByEmailTask', useClass: GetUserByEmailTask },
   { provide: 'IRefreshTokenTask', useClass: RefreshTokenTask },
+  { provide: 'IGetUserGithubByUserTask', useClass: GetUserGithubByUserTask },
 ];
 
 @Module({

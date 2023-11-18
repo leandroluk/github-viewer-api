@@ -1,4 +1,4 @@
-import { IUserGithub } from '../entities';
+import { IUser, IUserGithub } from '../entities';
 import { IAuthorizedHeaders } from '../generics';
 
 export type IGetMyProfileCase = {
@@ -6,5 +6,7 @@ export type IGetMyProfileCase = {
 };
 export namespace IGetMyProfileCase {
   export type Headers = IAuthorizedHeaders & {};
-  export type Result = IUserGithub & {};
+  export type Result = Omit<IUser, 'timestamp' | 'removedAt' | 'password'> & {
+    _github: Omit<IUserGithub, 'id' | 'timestamp' | 'userId'>;
+  };
 }

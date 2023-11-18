@@ -1,3 +1,4 @@
+export * from './get-my-profile';
 export * from './health';
 export * from './refresh-token';
 export * from './sign-in';
