@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GetUserByEmailTask } from './get-user-by-email';
 
-describe('GetUserByEmailService', () => {
+describe('GetUserByEmailTask', () => {
   let service: GetUserByEmailTask;
 
   beforeEach(async () => {

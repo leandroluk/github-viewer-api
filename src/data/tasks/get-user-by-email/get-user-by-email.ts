@@ -7,16 +7,13 @@ import { Inject, Injectable } from '@nestjs/common';
 export class GetUserByEmailTask implements IGetUserByEmailTask {
   constructor(
     @Inject('ISearchRepo<IUser>')
-    private readonly searchUser: ISearchRepo<IUser>,
+    private readonly searchRepoUser: ISearchRepo<IUser>,
   ) {}
   async get(data: IGetUserByEmailTask.Data): Promise<IGetUserByEmailTask.Result> {
     const {
       items: [item],
-    } = await this.searchUser.search({
-      where: {
-        email: { eq: data.email },
-        // removedAt: { eq: null },
-      },
+    } = await this.searchRepoUser.search({
+      where: { email: { eq: data.email } },
     });
     return item || null;
   }

@@ -1,8 +1,8 @@
 import { Body, Controller, HttpCode, HttpStatus, Inject, Post, UnauthorizedException } from '@nestjs/common';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 
 import { IAuthorization, ISignInCase } from '#/domain';
-import { SignInDTO } from '#/presentation/dtos';
+import { SignInBodyDTO } from '#/presentation/dtos';
 import { AuthorizationResponseObject } from '#/presentation/response-objects';
 import { IAuthorizeUserTask, IGetUserByEmailTask } from '#/presentation/tasks';
 
@@ -11,18 +11,19 @@ import { IAuthorizeUserTask, IGetUserByEmailTask } from '#/presentation/tasks';
 export class SignInController implements ISignInCase {
   constructor(
     @Inject('IGetUserByEmailTask')
-    private readonly getUserByEmail: IGetUserByEmailTask,
+    private readonly getUserByEmailTask: IGetUserByEmailTask,
     @Inject('IAuthorizeUserTask')
-    private readonly authorizeUser: IAuthorizeUserTask,
+    private readonly authorizeUserTask: IAuthorizeUserTask,
   ) {}
 
-  @ApiOkResponse({ type: AuthorizationResponseObject })
+  @ApiOkResponse({ type: AuthorizationResponseObject, description: 'Ok' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @Post()
   @HttpCode(HttpStatus.OK)
-  async signIn(@Body() body: SignInDTO): Promise<IAuthorization> {
-    const user = await this.getUserByEmail.get(body);
-    if (user) {
-      const authorization = await this.authorizeUser.authorize({
+  async signIn(@Body() body: SignInBodyDTO): Promise<IAuthorization> {
+    const user = await this.getUserByEmailTask.get(body);
+    if (user && !user.removedAt) {
+      const authorization = await this.authorizeUserTask.authorize({
         user,
         password: body.password,
       });

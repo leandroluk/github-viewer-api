@@ -7,12 +7,12 @@ import { ISignInCase } from '#/domain';
 @JoiSchemaOptions({
   allowUnknown: true,
 })
-export class SignInDTO implements ISignInCase.Body {
-  @ApiProperty({ example: 'john.doe@email.com' })
+export class SignInBodyDTO implements ISignInCase.Body {
   @JoiSchema(Joi.string().required())
+  @ApiProperty({ example: 'john.doe@email.com' })
   email: string;
 
-  @ApiProperty({ example: 'Test@123' })
   @JoiSchema(Joi.string().required())
+  @ApiProperty({ example: 'Test@123' })
   password: string;
 }

@@ -7,20 +7,21 @@ import { Inject, Injectable } from '@nestjs/common';
 export class AuthorizeUserTask implements IAuthorizeUserTask {
   constructor(
     @Inject('ICompareHashAdapter')
-    private readonly compareHash: ICompareHashAdapter,
+    private readonly compareHashAdapter: ICompareHashAdapter,
     @Inject('ICreateJwtTokenAdapter')
-    private readonly createJwtToken: ICreateJwtTokenAdapter,
+    private readonly createJwtTokenAdapter: ICreateJwtTokenAdapter,
   ) {}
 
   async authorize(data: IAuthorizeUserTask.Data): Promise<IAuthorizeUserTask.Result> {
-    const isSamePassword = await this.compareHash.compare({
-      hashed: data.user.password,
-      plain: data.password,
-    });
+    const {
+      password: plain,
+      user: { email: subject, password: hashed },
+    } = data;
+    const isSamePassword = await this.compareHashAdapter.compare({ hashed, plain });
     if (isSamePassword) {
       const [accessToken, refreshToken] = await Promise.all([
-        this.createJwtToken.create({ subject: data.user.email, expires: vars.jwt.accessTTL, type: 'access' }),
-        this.createJwtToken.create({ subject: data.user.email, expires: vars.jwt.refreshTTL, type: 'refresh' }),
+        this.createJwtTokenAdapter.create({ subject, expires: vars.jwt.accessTTL, type: 'access' }),
+        this.createJwtTokenAdapter.create({ subject, expires: vars.jwt.refreshTTL, type: 'refresh' }),
       ]);
       return {
         accessToken,
