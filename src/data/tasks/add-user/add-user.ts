@@ -1,9 +1,10 @@
+import { Inject, Injectable } from '@nestjs/common';
+
 import { ICreateHashAdapter, ICreateUuidAdapter } from '#/data/adapters';
-import { IGetUserGithubRemote } from '#/data/remotes';
+import { IGetGithubUserRemote } from '#/data/remotes';
 import { IAddRepo } from '#/data/repos';
 import { IUser, IUserGithub } from '#/domain';
 import { IAddUserTask } from '#/presentation/tasks';
-import { Inject, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AddUserTask implements IAddUserTask {
@@ -14,8 +15,8 @@ export class AddUserTask implements IAddUserTask {
     private readonly createHashAdapter: ICreateHashAdapter,
     @Inject('IAddRepo<IUser>')
     private readonly addRepoUser: IAddRepo<IUser>,
-    @Inject('IGetUserGithubRemote')
-    private readonly getUserGithubRemote: IGetUserGithubRemote,
+    @Inject('IGetGithubUserRemote')
+    private readonly getGithubUserRemote: IGetGithubUserRemote,
     @Inject('IAddRepo<IUserGithub>')
     private readonly addRepoUserGithub: IAddRepo<IUserGithub>,
   ) {}
@@ -36,21 +37,21 @@ export class AddUserTask implements IAddUserTask {
       password: hashedPassword,
     };
     await this.addRepoUser.add(user);
-    const remoteUserGithub = await this.getUserGithubRemote.get(data._github);
+    const githubUser = await this.getGithubUserRemote.get(data._github);
     const userGithub: IUserGithub = {
       id: userGithubId,
       timestamp: now,
       userId: userId,
-      bio: remoteUserGithub?.bio,
-      blogUrl: remoteUserGithub?.blogUrl,
-      company: remoteUserGithub?.company,
-      email: remoteUserGithub?.email,
-      followersCount: remoteUserGithub?.followersCount,
-      followingCount: remoteUserGithub?.followingCount,
-      login: remoteUserGithub?.login,
-      name: remoteUserGithub?.name,
-      publicReposCount: remoteUserGithub?.publicReposCount,
-      twitterUsername: remoteUserGithub?.twitterUsername,
+      bio: githubUser?.bio,
+      blogUrl: githubUser?.blogUrl,
+      company: githubUser?.company,
+      email: githubUser?.email,
+      followersCount: githubUser?.followersCount,
+      followingCount: githubUser?.followingCount,
+      login: githubUser?.login,
+      name: githubUser?.name,
+      publicReposCount: githubUser?.publicReposCount,
+      twitterUsername: githubUser?.twitterUsername,
     };
     await this.addRepoUserGithub.add(userGithub);
     return {

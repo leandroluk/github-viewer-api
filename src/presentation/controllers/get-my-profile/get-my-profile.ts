@@ -2,6 +2,7 @@ import { Controller, Get, Headers, HttpCode, HttpStatus, Inject, UnauthorizedExc
 import { ApiBearerAuth, ApiOkResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 
 import { IGetMyProfileCase } from '#/domain';
+import { ProfileResponseObject } from '#/presentation/response-objects/profile';
 import { IDecodeTokenTask, IGetUserByEmailTask, IGetUserGithubByUserTask } from '#/presentation/tasks';
 
 @ApiTags('my')
@@ -17,11 +18,11 @@ export class GetMyProfileController implements IGetMyProfileCase {
   ) {}
 
   @ApiBearerAuth('JWT')
-  @ApiOkResponse({ description: 'Ok' })
+  @ApiOkResponse({ description: 'Ok', type: ProfileResponseObject })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @Get()
   @HttpCode(HttpStatus.OK)
-  async get(@Headers() headers: IGetMyProfileCase.Headers): Promise<IGetMyProfileCase.Result> {
+  async get(@Headers() headers: IGetMyProfileCase.Headers): Promise<ProfileResponseObject> {
     const decoded = await this.decodeTokenTask.decode(headers);
     if (decoded?.type === 'access') {
       const user = await this.getUserByEmailTask.get(decoded);

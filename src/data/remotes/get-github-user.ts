@@ -1,9 +1,9 @@
 import { IEntity, IUserGithub } from '#/domain';
 
-export type IGetUserGithubRemote = {
-  get(data: IGetUserGithubRemote.Data): Promise<IGetUserGithubRemote.Result>;
+export type IGetGithubUserRemote = {
+  get(data: IGetGithubUserRemote.Data): Promise<IGetGithubUserRemote.Result>;
 };
-export namespace IGetUserGithubRemote {
+export namespace IGetGithubUserRemote {
   export type Data = Pick<IUserGithub, 'login'>;
   export type Result = Omit<IUserGithub, keyof IEntity | 'userId'> | null;
 }

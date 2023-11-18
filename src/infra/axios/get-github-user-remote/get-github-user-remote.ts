@@ -2,16 +2,15 @@ import { Injectable, Logger } from '@nestjs/common';
 import axios, { isAxiosError } from 'axios';
 import { Retryable } from 'typescript-retry-decorator';
 
-import { IGetUserGithubRemote } from '#/data/remotes';
+import { IGetGithubUserRemote } from '#/data/remotes';
 
 @Injectable()
-export class GetUserGithubRemote implements IGetUserGithubRemote {
-  private readonly logger = new Logger(GetUserGithubRemote.name);
-  private baseUrl: string = 'https://api.github.com/users';
+export class GetGithubUserRemote implements IGetGithubUserRemote {
+  private readonly logger = new Logger(GetGithubUserRemote.name);
 
   @Retryable({ maxAttempts: 3 })
-  async get(data: IGetUserGithubRemote.Data): Promise<IGetUserGithubRemote.Result> {
-    const url = `${this.baseUrl}/${data.login}`;
+  async get(data: IGetGithubUserRemote.Data): Promise<IGetGithubUserRemote.Result> {
+    const url = `https://api.github.com/users/${data.login}`;
     try {
       const { data } = await axios.get<GetUserGithubRemote.Response>(url);
       return {

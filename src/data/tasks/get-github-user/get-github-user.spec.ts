@@ -1,16 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { GetGithubUserTask } from './get-github-user';
 
-import { GetUserGithubRemote } from './get-user-github-remote';
-
-describe('GetUserGithubRemote', () => {
-  let service: GetUserGithubRemote;
+describe('GetGithubUserTask', () => {
+  let service: GetGithubUserTask;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [GetUserGithubRemote],
+      providers: [GetGithubUserTask],
     }).compile();
 
-    service = module.get<GetUserGithubRemote>(GetUserGithubRemote);
+    service = module.get<GetGithubUserTask>(GetGithubUserTask);
   });
 
   it('should be defined', () => {

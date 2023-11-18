@@ -1,9 +1,14 @@
 import { IUserGithub } from '../entities';
+import { IAuthorizedHeaders, IGithubUserRepo } from '../generics';
 
 export type IListGithubUserRepoCase = {
-  find(params: IListGithubUserRepoCase.Params): Promise<IListGithubUserRepoCase.Result>;
+  find(
+    headers: IListGithubUserRepoCase.Headers,
+    params: IListGithubUserRepoCase.Params,
+  ): Promise<IListGithubUserRepoCase.Result>;
 };
 export namespace IListGithubUserRepoCase {
+  export type Headers = IAuthorizedHeaders & {};
   export type Params = Pick<IUserGithub, 'login'>;
-  export type Result = IUserGithub & {};
+  export type Result = Array<IGithubUserRepo>;
 }

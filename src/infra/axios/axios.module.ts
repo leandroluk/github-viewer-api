@@ -1,7 +1,11 @@
 import { Module, Provider } from '@nestjs/common';
-import { GetUserGithubRemote } from './get-user-github-remote';
+import { GetGithubUserRemote } from './get-github-user-remote';
+import { ListGithubUserRepoRemote } from './list-github-user-repo-remote';
 
-const providers: Provider[] = [{ provide: 'IGetUserGithubRemote', useClass: GetUserGithubRemote }];
+const providers: Provider[] = [
+  { provide: 'IGetGithubUserRemote', useClass: GetGithubUserRemote },
+  { provide: 'IListGithubUserRepoRemote', useClass: ListGithubUserRepoRemote },
+];
 
 @Module({
   providers,
