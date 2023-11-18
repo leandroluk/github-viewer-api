@@ -35,13 +35,13 @@
   ],
   // javascript
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
-  "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+  "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
   "javascript.format.insertSpaceBeforeFunctionParenthesis": false,
   "javascript.preferences.quoteStyle": "single",
   // typescript
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
-  "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+  "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
   "typescript.format.insertSpaceBeforeFunctionParenthesis": false,
   "typescript.preferences.quoteStyle": "single",

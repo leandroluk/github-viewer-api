@@ -12,5 +12,5 @@ export type IUserGithub = IUpdatable & {
   email: string | null;
   twitterUsername: string | null;
   company: string | null;
-  blog: string | null;
+  blogUrl: string | null;
 };

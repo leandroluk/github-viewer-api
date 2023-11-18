@@ -19,14 +19,20 @@
     "noFallthroughCasesInSwitch": false,
     // changes
     "resolveJsonModule": true,
+    "esModuleInterop": true,
     "paths": {
       "#/*": [
         "./src/*"
       ]
     }
   },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts"
+  ],
   "ts-node": {
     "require": [
+      "reflect-metadata",
       "tsconfig-paths/register",
       "dotenv/config"
     ]
