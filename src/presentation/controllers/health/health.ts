@@ -1,4 +1,6 @@
+import { HealthDTO } from '#/presentation/response-objects/health';
 import { ICheckServerIntegrationTask } from '#/presentation/tasks';
+import { vars } from '#/vars';
 import { Controller, Get, Inject } from '@nestjs/common';
 import { ApiOkResponse } from '@nestjs/swagger';
 
@@ -10,7 +12,8 @@ export class HealthController {
   ) {}
   @ApiOkResponse({ description: 'Ok' })
   @Get()
-  async get(): Promise<void> {
+  async get(): Promise<HealthDTO> {
     await this.checkServerIntegrationTask.check();
+    return vars.app;
   }
 }

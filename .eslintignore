@@ -37,3 +37,6 @@ lerna-debug.log*
 
 # Project files
 commitlint.config.js
+jest.config.ts
+jest.integration.config.ts
+jest.unit.config.ts

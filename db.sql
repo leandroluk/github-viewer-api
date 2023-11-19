@@ -30,3 +30,17 @@ CREATE TABLE "user_github" (
   PRIMARY KEY ("id"),
   FOREIGN KEY ("user_id") REFERENCES "user" ("id") ON DELETE CASCADE
 );
+
+-- seeding
+
+INSERT INTO "user" ("email", "password") VALUES (
+  'leandroluk@gmail.com',
+  '221d318e89fc1744e435a2c60c9dee757c8a62b99b4110e98f41bf7c8dffc9f85534958b92d33881' -- Test@123 (encrypted)
+);
+
+INSERT INTO "user_github" ("user_id", "login") 
+SELECT 
+  "id" AS "user_id",
+  'leandroluk' AS "login"
+FROM "user" 
+WHERE "email" = 'leandroluk@gmail.com';

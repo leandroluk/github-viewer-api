@@ -11,6 +11,7 @@ export const vars = {
     description: packageJson.description,
     version: packageJson.version,
     homepage: packageJson.homepage,
+    author: packageJson.author,
   },
   db: {
     postgres: _.DB_POSTGRES ?? 'postgresql://postgres:postgres@localhost:5432/github-viewer',

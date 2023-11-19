@@ -2,7 +2,7 @@
   "name": "@github-viewer/api",
   "displayName": "Github Viewer - API",
   "version": "0.0.1",
-  "description": "",
+  "description": "Backend criado para portifólio em NestJS",
   "homepage": "https://github.com/leandroluk/github-viewer-api",
   "repository": "https://github.com/leandroluk/github-viewer-api.git",
   "author": {
