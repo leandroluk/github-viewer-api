@@ -44,4 +44,6 @@ ENV PORT=3000 \
     JWT_ACCESS_TTL=600000 \
     JWT_REFRESH_TTL=1209600000
 
-CMD [ "node", "dist/src/main.js" ]
+HEALTHCHECK CMD curl --fail http://localhost:3000/health || exit 1   
+
+CMD [ "node", "dist/src/index.js" ]
