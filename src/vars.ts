@@ -23,8 +23,8 @@ export const vars = {
     audience: _.JWT_AUDIENCE ?? 'http://localhost:3000',
     issuer: _.JWT_ISSUER ?? 'issuer',
     // default 10 minutes
-    accessTTL: Number(_.JWT_ACCESS_TTL ?? 1000 * 60 * 10),
+    accessTTL: Number(_.JWT_ACCESS_TTL ?? 600000),
     // default 14 days
-    refreshTTL: Number(_.JWT_REFRESH_TTL ?? 1000 * 60 * 60 * 24 * 14),
+    refreshTTL: Number(_.JWT_REFRESH_TTL ?? 1209600000),
   },
 };

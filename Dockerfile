@@ -32,4 +32,16 @@ USER node
 FROM node:18-alpine As production
 COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
 COPY --chown=node:node --from=build /usr/src/app/dist ./dist
+
+ENV PORT=3000 \
+    NODE_ENV="development" \
+    DB_POSTGRES="postgresql://postgres:postgres@localhost:5432/github-viewer" \
+    DB_LIMIT=50 \
+    JWT_PRIVATE_KEY="secret" \
+    JWT_PUBLIC_KEY="secret" \
+    JWT_AUGORITHM="HS256" \
+    JWT_ISSUER="issuer" \
+    JWT_ACCESS_TTL=600000 \
+    JWT_REFRESH_TTL=1209600000
+
 CMD [ "node", "dist/src/main.js" ]
