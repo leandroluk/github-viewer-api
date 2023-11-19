@@ -13,7 +13,7 @@ export const vars = {
     homepage: packageJson.homepage,
   },
   db: {
-    postgres: _.DB_POSTGRES ?? 'postgresql://postgres:postgres@localhost:5432/postgres',
+    postgres: _.DB_POSTGRES ?? 'postgresql://postgres:postgres@localhost:5432/github-viewer',
     limit: Number(_.DB_LIMIT ?? 50),
   },
   jwt: {
