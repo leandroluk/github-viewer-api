@@ -4,9 +4,10 @@
   "version": "0.0.1",
   "description": "",
   "homepage": "https://github.com/leandroluk/github-viewer-api",
+  "repository": "https://github.com/leandroluk/github-viewer-api.git",
   "author": {
-    "name": "Leandro Santiago Gomes",
     "email": "leandroluk@gmail.com",
+    "name": "Leandro Santiago Gomes",
     "url": "https://www.linkedin.com/in/leandroluk/"
   },
   "private": true,
