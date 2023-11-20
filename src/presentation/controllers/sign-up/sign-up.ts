@@ -6,7 +6,7 @@ import { SignUpBodyDTO } from '#/presentation/dtos';
 import { IAddUserTask, IGetUserByEmailTask } from '#/presentation/tasks';
 
 @ApiTags('auth')
-@Controller('api/auth/sign-up')
+@Controller('auth/sign-up')
 export class SignUpController implements ISignUpCase {
   static readonly MESSAGE_EMAIL_IN_USE = 'Email already in use.';
 

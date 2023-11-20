@@ -7,7 +7,7 @@ import { AuthorizationResponseObject } from '#/presentation/response-objects';
 import { IAuthorizeUserTask, IGetUserByEmailTask } from '#/presentation/tasks';
 
 @ApiTags('auth')
-@Controller('api/auth/sign-in')
+@Controller('auth/sign-in')
 export class SignInController implements ISignInCase {
   constructor(
     @Inject('IGetUserByEmailTask')

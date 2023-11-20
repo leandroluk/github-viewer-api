@@ -6,7 +6,7 @@ import { ProfileResponseObject } from '#/presentation/response-objects/profile';
 import { IDecodeTokenTask, IGetUserByEmailTask, IGetUserGithubByUserTask } from '#/presentation/tasks';
 
 @ApiTags('my')
-@Controller('api/my/profile')
+@Controller('my/profile')
 export class GetMyProfileController implements IGetMyProfileCase {
   constructor(
     @Inject('IDecodeTokenTask')

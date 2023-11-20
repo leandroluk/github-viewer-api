@@ -16,7 +16,7 @@ import { GithubUserParamsLoginDTO } from '#/presentation/dtos';
 import { GithubUserResponseObject } from '#/presentation/response-objects/github-user';
 import { IDecodeTokenTask, IGetGithubUserTask } from '#/presentation/tasks';
 
-@ApiTags('github')
+@ApiTags('api')
 @Controller('api/github/:login')
 export class GetGithubUserController implements IGetGithubUserCase {
   constructor(

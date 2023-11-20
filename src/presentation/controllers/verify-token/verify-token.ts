@@ -5,7 +5,7 @@ import { IVerifyTokenCase } from '#/domain';
 import { IDecodeTokenTask } from '#/presentation/tasks';
 
 @ApiTags('auth')
-@Controller('api/auth/verify')
+@Controller('auth/verify')
 export class VerifyTokenController implements IVerifyTokenCase {
   constructor(
     @Inject('IDecodeTokenTask')

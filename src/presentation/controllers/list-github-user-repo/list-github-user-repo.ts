@@ -15,7 +15,7 @@ import { IListGithubUserRepoCase } from '#/domain';
 import { GithubUserParamsLoginDTO } from '#/presentation/dtos';
 import { IDecodeTokenTask, IListGithubUserReposByLoginTask } from '#/presentation/tasks';
 
-@ApiTags('github')
+@ApiTags('api')
 @Controller('api/github/:login/repo/_list')
 export class ListGithubUserRepoController implements IListGithubUserRepoCase {
   constructor(

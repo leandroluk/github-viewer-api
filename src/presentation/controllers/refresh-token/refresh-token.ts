@@ -6,7 +6,7 @@ import { AuthorizationResponseObject } from '#/presentation/response-objects';
 import { IDecodeTokenTask, IRefreshTokenTask } from '#/presentation/tasks';
 
 @ApiTags('auth')
-@Controller('api/auth/refresh')
+@Controller('auth/refresh')
 export class RefreshTokenController implements IRefreshTokenCase {
   constructor(
     @Inject('IDecodeTokenTask')

@@ -11,7 +11,7 @@ import { IRefreshMyUserGithubCase } from '#/domain';
 import { IDecodeTokenTask, IGetUserByEmailTask, IRefreshUserGithubByUserTask } from '#/presentation/tasks';
 
 @ApiTags('my')
-@Controller('api/my/profile/github')
+@Controller('my/profile/github')
 export class RefreshMyGithubProfileController implements IRefreshMyUserGithubCase {
   constructor(
     @Inject('IDecodeTokenTask')
