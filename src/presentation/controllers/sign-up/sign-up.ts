@@ -2,14 +2,13 @@ import { Body, ConflictException, Controller, HttpCode, HttpStatus, Inject, Post
 import { ApiConflictResponse, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 
 import { ISignUpCase } from '#/domain';
+import { MESSAGE_EMAIL_IN_USE } from '#/presentation/constants';
 import { SignUpBodyDTO } from '#/presentation/dtos';
 import { IAddUserTask, IGetUserByEmailTask } from '#/presentation/tasks';
 
 @ApiTags('auth')
 @Controller('auth/sign-up')
 export class SignUpController implements ISignUpCase {
-  static readonly MESSAGE_EMAIL_IN_USE = 'Email already in use.';
-
   constructor(
     @Inject('IGetUserByEmailTask')
     private readonly getUserByEmailTask: IGetUserByEmailTask,
@@ -24,7 +23,7 @@ export class SignUpController implements ISignUpCase {
   async signUp(@Body() body: SignUpBodyDTO): Promise<void> {
     const emailInUse = await this.getUserByEmailTask.get(body);
     if (emailInUse) {
-      throw new ConflictException(SignUpController.MESSAGE_EMAIL_IN_USE);
+      throw new ConflictException(MESSAGE_EMAIL_IN_USE);
     }
     await this.addUserTask.add(body);
   }

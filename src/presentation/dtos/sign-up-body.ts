@@ -3,6 +3,7 @@ import Joi from 'joi';
 import { JoiSchema, JoiSchemaOptions } from 'nestjs-joi';
 
 import { ISignUpCase, IUserGithub } from '#/domain';
+import { PASSWORD_REGEX } from '../constants';
 
 class SignUpBodyDTOGithub implements Pick<IUserGithub, 'login'> {
   @ApiProperty({ example: 'example123' })
@@ -21,12 +22,7 @@ export class SignUpBodyDTO implements ISignUpCase.Body {
   @ApiProperty({ example: 'john.doe@email.com' })
   email: string;
 
-  @JoiSchema(
-    Joi.string()
-      .min(8)
-      .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
-      .required(),
-  )
+  @JoiSchema(Joi.string().min(8).pattern(PASSWORD_REGEX).required())
   @ApiProperty({ example: 'Test@123' })
   password: string;
 

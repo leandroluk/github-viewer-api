@@ -1,3 +1,4 @@
+export * from './edit-my-user';
 export * from './get-github-user';
 export * from './get-my-profile';
 export * from './list-github-user-repo';

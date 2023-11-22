@@ -12,12 +12,14 @@ import {
   RefreshTokenTask,
   RefreshUserGithubByUserTask,
 } from './tasks';
+import { EditUserTask } from './tasks/edit-user/edit-user';
 
 export const providers: Provider[] = [
   { provide: 'IAddUserTask', useClass: AddUserTask },
   { provide: 'IAuthorizeUserTask', useClass: AuthorizeUserTask },
   { provide: 'ICheckServerIntegrationTask', useClass: CheckServerIntegrationTask },
   { provide: 'IDecodeTokenTask', useClass: DecodeTokenTask },
+  { provide: 'IEditUserTask', useClass: EditUserTask },
   { provide: 'IGetGithubUserTask', useClass: GetGithubUserTask },
   { provide: 'IGetUserByEmailTask', useClass: GetUserByEmailTask },
   { provide: 'IGetUserGithubByUserTask', useClass: GetUserGithubByUserTask },
