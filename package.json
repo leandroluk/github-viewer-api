@@ -1,6 +1,6 @@
 {
   "name": "@github-viewer/api",
-  "displayName": "Github Viewer - API",
+  "displayName": "Github Viewer",
   "version": "0.0.1",
   "description": "Backend criado para portifólio em NestJS",
   "homepage": "https://github.com/leandroluk/github-viewer-api",
