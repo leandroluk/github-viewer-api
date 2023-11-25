@@ -25,7 +25,7 @@ export class AddUserTask implements IAddUserTask {
     const [userId, userGithubId, hashedPassword] = await Promise.all([
       this.createUuidAdapter.create(),
       this.createUuidAdapter.create(),
-      this.createHashAdapter.create(data.password),
+      this.createHashAdapter.create(data.user.password),
     ]);
     const now = new Date();
     const user: IUser = {
@@ -33,25 +33,24 @@ export class AddUserTask implements IAddUserTask {
       timestamp: now,
       createdAt: now,
       removedAt: null,
-      email: data.email,
+      email: data.user.email,
       password: hashedPassword,
     };
     await this.addRepoUser.add(user);
-    const githubUser = await this.getGithubUserRemote.get(data._github);
     const userGithub: IUserGithub = {
       id: userGithubId,
       timestamp: now,
       userId: userId,
-      bio: githubUser?.bio,
-      blogUrl: githubUser?.blogUrl,
-      company: githubUser?.company,
-      email: githubUser?.email,
-      followersCount: githubUser?.followersCount,
-      followingCount: githubUser?.followingCount,
-      login: githubUser?.login,
-      name: githubUser?.name,
-      publicReposCount: githubUser?.publicReposCount,
-      twitterUsername: githubUser?.twitterUsername,
+      bio: data.githubUser.bio,
+      blogUrl: data.githubUser.blogUrl,
+      company: data.githubUser.company,
+      email: data.githubUser.email,
+      followersCount: data.githubUser.followersCount,
+      followingCount: data.githubUser.followingCount,
+      login: data.githubUser.login,
+      name: data.githubUser.name,
+      publicReposCount: data.githubUser.publicReposCount,
+      twitterUsername: data.githubUser.twitterUsername,
     };
     await this.addRepoUserGithub.add(userGithub);
     return {
