@@ -14,6 +14,7 @@ export class DecodeTokenTask implements IDecodeTokenTask {
     const { authorization = '' } = headers;
     const [, token] = authorization.split(' ');
     const result = await this.verifyJwtTokenAdapter.verify({ token });
+    if (!result) return null;
     return {
       salt: result.salt,
       email: result.subject,
