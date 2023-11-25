@@ -26,7 +26,7 @@ export class GetGithubUserRemote implements IGetGithubUserRemote {
         twitterUsername: data.twitter_username ?? null,
       };
     } catch (error) {
-      if (isAxiosError(error) && error.status === 404) {
+      if (isAxiosError(error) && error.response.status === 404) {
         return null;
       }
       this.logger.error(error);
