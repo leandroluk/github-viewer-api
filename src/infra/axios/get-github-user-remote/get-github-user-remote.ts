@@ -12,22 +12,24 @@ export class GetGithubUserRemote implements IGetGithubUserRemote {
   async get(data: IGetGithubUserRemote.Data): Promise<IGetGithubUserRemote.Result> {
     const url = `https://api.github.com/users/${data.login}`;
     try {
-      const { data } = await axios.get<GetUserGithubRemote.Response>(url);
+      const response = await axios.get<GetUserGithubRemote.Response>(url);
       return {
-        bio: data.bio ?? null,
-        blogUrl: data.blog ?? null,
-        company: data.company ?? null,
-        email: data.email ?? null,
-        followersCount: data.followers ?? null,
-        followingCount: data.following ?? null,
-        login: data.login ?? null,
-        name: data.name ?? null,
-        publicReposCount: data.public_repos ?? null,
-        twitterUsername: data.twitter_username ?? null,
+        bio: response.data.bio ?? null,
+        blogUrl: response.data.blog ?? null,
+        company: response.data.company ?? null,
+        email: response.data.email ?? null,
+        followersCount: response.data.followers ?? null,
+        followingCount: response.data.following ?? null,
+        login: response.data.login ?? null,
+        name: response.data.name ?? null,
+        publicReposCount: response.data.public_repos ?? null,
+        twitterUsername: response.data.twitter_username ?? null,
       };
     } catch (error) {
-      if (isAxiosError(error) && error.response.status === 404) {
-        return null;
+      if (isAxiosError(error)) {
+        if (error.response.status === 404) return null;
+        // https://docs.github.com/pt/rest/overview/resources-in-the-rest-api?apiVersion=2022-11-28#rate-limiting
+        // TODO: need catch error 403
       }
       this.logger.error(error);
       throw error;
